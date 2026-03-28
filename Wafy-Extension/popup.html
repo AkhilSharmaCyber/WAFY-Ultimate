@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>WAFinity</title>
+  <link rel="stylesheet" href="popup.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo-wrap">
+    <span class="logo-icon">&#9889;</span>
+    <div>
+      <div class="logo-text">WAFINITY</div>
+      <div class="logo-sub">SECURITY SHIELD v2.1</div>
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="header-right">
+    <label class="toggle-wrap" title="Toggle real-time blocking">
+      <input type="checkbox" id="blocking-toggle" checked/>
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    </label>
+    <div class="status-wrap">
+      <div class="pulse-dot offline" id="status-dot"></div>
+      <span id="status-label" class="offline">offline</span>
+    </div>
+  </div>
+  <div class="header-glow"></div>
+</header>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-num c-blue" id="s-checked">0</div>
+    <div class="stat-lbl">Scanned</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num c-red" id="s-threats">0</div>
+    <div class="stat-lbl">Blocked</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num c-green" id="s-safe">0</div>
+    <div class="stat-lbl">Safe</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" id="tab-threats">&#128308; Live Threats</button>
+  <button class="tab-btn" id="tab-test">&#129514; Test</button>
+  <button class="tab-btn" id="tab-about">&#8505; Info</button>
+</div>
+
+<!-- Threats Panel -->
+<div class="panel active" id="panel-threats">
+  <div id="feed">
+    <div class="empty-state">
+      <span class="empty-icon">&#128737;</span>
+      <div class="empty-text">No threats blocked yet.<br>WAFinity is watching your tab.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Test Panel -->
+<div class="panel" id="panel-test">
+  <div class="test-wrap">
+    <div class="test-label">Test a payload manually:</div>
+    <textarea id="test-input"
+      placeholder="Enter payload to test:
+
+' OR 1=1--
+&lt;script&gt;alert(1)&lt;/script&gt;
+../../../etc/passwd
+; cat /etc/passwd"></textarea>
+    <button class="analyse-btn" id="analyse-btn">&#9654; Analyse Payload</button>
+    <div class="result-card" id="test-result"></div>
+  </div>
+</div>
+
+<!-- About Panel -->
+<div class="panel" id="panel-about">
+  <div class="how-it-works">
+    <div class="hiw-title">🛡️ How It Works</div>
+    <div class="hiw-step">
+      <span class="hiw-num">1</span>
+      <div><strong>Content Script</strong> monitors every form, link, and input on the page you visit</div>
+    </div>
+    <div class="hiw-step">
+      <span class="hiw-num">2</span>
+      <div><strong>Before Submit</strong> — the payload is sent to your local WAFinity WAF engine</div>
+    </div>
+    <div class="hiw-step">
+      <span class="hiw-num">3</span>
+      <div><strong>AI + Signature</strong> analysis runs across 8 detection layers in &lt;100ms</div>
+    </div>
+    <div class="hiw-step">
+      <span class="hiw-num">4</span>
+      <div><strong>Threats are blocked</strong> with a red banner. Safe requests go through normally</div>
+    </div>
+  </div>
+  <div class="about-list">
+    <div class="about-row"><span class="a-key">Version</span><span class="a-val">2.1</span></div>
+    <div class="about-row"><span class="a-key">Detection</span><span class="a-val">AI + Signature (8 layers)</span></div>
+    <div class="about-row"><span class="a-key">Backend</span><span class="a-val">Flask @ :5000</span></div>
+    <div class="about-row"><span class="a-key">Project</span><span class="a-val">BTech CSE Cyber Security</span></div>
+  </div>
+  <div class="detection-chips">
+    <span class="chip">SQL INJECTION</span>
+    <span class="chip">XSS</span>
+    <span class="chip">SSRF</span>
+    <span class="chip">CMD INJECTION</span>
+    <span class="chip">PATH TRAVERSAL</span>
+    <span class="chip">WAF BYPASS</span>
+    <span class="chip">AI ANOMALY</span>
+    <span class="chip">ZERO-DAY</span>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <button class="foot-btn primary" id="btn-dashboard">&#128202; Live Dashboard</button>
+  <button class="foot-btn" id="btn-clear">&#128465; Clear Log</button>
+</footer>
+
+<script src="popup.js"></script>
+</body>
+</html>
